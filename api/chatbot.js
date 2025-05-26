@@ -1,10 +1,10 @@
-import { WordTokenizer, JaroWinklerDistance } from 'natural';
-import axios from 'axios';
+const { WordTokenizer, JaroWinklerDistance } = require('natural');
+const axios = require('axios');
 
 const tokenizer = new WordTokenizer();
 const SHEET_API = "https://api.sheetbest.com/sheets/db05bd49-503d-4fdb-979b-7fbfd05f87e2";
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   const userQuestion = req.query.q?.toLowerCase();
   if (!userQuestion) {
     return res.status(400).json({ error: "سوال ارسال نشده است" });
@@ -38,4 +38,4 @@ export default async function handler(req, res) {
   } catch (err) {
     return res.status(500).json({ error: "خطا در ارتباط با سیستم پاسخ‌گو" });
   }
-}
+};
